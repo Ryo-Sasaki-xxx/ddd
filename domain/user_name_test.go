@@ -20,4 +20,16 @@ func TestUserName(t *testing.T) {
 		_, err := domain.NewUserName(name)
 		assert.Error(t, err)
 	})
+
+	t.Run("success NewUserPass()", func(t *testing.T) {
+		pass := "hogehogehoge"
+		user_pass, _ := domain.NewUserPass(pass)
+		assert.Equal(t, pass, user_pass.ExportPass())
+	})
+
+	t.Run("pass length error NewUserPass()", func(t *testing.T) {
+		pass := "hoge"
+		_, err := domain.NewUserPass(pass)
+		assert.Error(t, err)
+	})
 }
